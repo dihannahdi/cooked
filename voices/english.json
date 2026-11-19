@@ -1,0 +1,50 @@
+{
+  "_readme": "Casual English. {session} = the session's name, {tool} = the tool asking for permission. The prefix goes in front of every title, so the first character always tells the state.",
+  "done_prefix": "✅ ",
+  "needs_prefix": "✋ ",
+  "test_body": "Test from /cooked. Click this from another tab and it jumps straight back here.",
+
+  "done_titles": [
+    "{session} is cooked",
+    "cooked: {session}",
+    "{session} is done, your turn",
+    "{session} finished cooking",
+    "done cooking: {session}",
+    "{session} is ready for you",
+    "{session} wrapped up"
+  ],
+  "done_body_fallback": [
+    "Claude finished but left no message. Check the terminal.",
+    "Done, with no reply text this time. Take a look at the session.",
+    "Finished quietly. The changes are waiting in the terminal."
+  ],
+
+  "permission_titles": [
+    "{session} needs your ok",
+    "{session} is blocked on a permission",
+    "{session} wants to run something",
+    "{session} can't go on without you"
+  ],
+  "permission_bodies": [
+    "Claude wants to use {tool}. Waiting for your approval.",
+    "Blocked on {tool}. Approve or deny it in the terminal.",
+    "Needs permission for {tool} before it can keep going."
+  ],
+
+  "question_titles": [
+    "{session} has a question",
+    "{session} needs your answer",
+    "{session} is waiting on you",
+    "{session} needs a decision"
+  ],
+  "question_bodies": [
+    "Claude asked you something and is waiting for your answer.",
+    "There's a choice to make in the terminal before it continues.",
+    "Waiting on your input to keep going."
+  ],
+
+  "auth_titles": [
+    "signed in for {session}",
+    "{session}: login done"
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "_readme": "Bahasa gaul (Indonesian, casual). {session} = the session's name, {tool} = the tool asking for permission. The prefix goes in front of every title, so the first character always tells the state.",
+  "done_prefix": "✅ ",
+  "needs_prefix": "✋ ",
+  "test_body": "tes dari /cooked. klik notif ini dari tab lain, nanti langsung balik ke sini.",
+
+  "done_titles": [
+    "{session} udah kelar nih",
+    "done nih, sesh {session}",
+    "alhamdulillah {session} beres",
+    "sesh {session} udah done",
+    "kelar juga nih {session}",
+    "udah beres nih {session}",
+    "{session} done, aman terkendali",
+    "{session} udah kelar sesh-nya"
+  ],
+  "done_body_fallback": [
+    "turn-nya udah beres tapi ga ada reply text. langsung cek terminal aja.",
+    "udah kelar nih, cuma claude ga ninggalin pesan apa-apa. cek hasil sesh-nya ya.",
+    "kerjaannya udah done tanpa output teks. coba intip diff atau terminalnya."
+  ],
+
+  "permission_titles": [
+    "butuh izin nih di {session}",
+    "{session} minta acc dulu",
+    "ketahan izin nih sesh {session}",
+    "{session} nyangkut nunggu acc",
+    "butuh acc lu dulu di {session}"
+  ],
+  "permission_bodies": [
+    "claude mau pake {tool}, lagi nungguin approval lu nih buat lanjut.",
+    "sesh ini ketahan gara-gara butuh izin pake {tool}. acc dulu dong biar jalan lagi.",
+    "lagi nunggu di-approve buat jalanin {tool} nih, cek bentar ya.",
+    "agent minta izin akses {tool} dulu. belum bisa lanjut kalo belum lu acc."
+  ],
+
+  "question_titles": [
+    "{session} mau nanya dulu nih",
+    "butuh jawaban lu di {session}",
+    "ada pertanyaan di sesh {session}",
+    "{session} nunggu keputusan lu",
+    "{session} nanya, pilih mana nih?"
+  ],
+  "question_bodies": [
+    "claude lagi nanya sesuatu dan butuh pilihan lu buat lanjut. cek terminal bentar ya.",
+    "sesh ini ketahan di choice dialog nih, perlu lu pilihin opsinya dulu.",
+    "ada pertanyaan dari agent yang harus dijawab dulu biar ga nyangkut."
+  ],
+
+  "auth_titles": [
+    "login {session} udah beres",
+    "auth {session} udah tembus nih"
+  ]
+}
