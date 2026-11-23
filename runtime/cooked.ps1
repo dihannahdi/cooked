@@ -1,10 +1,10 @@
 # cooked.ps1: the one entry point the /cooked skill calls. Windows PowerShell 5.1, per user, no admin.
 #   cooked.ps1 check                              preflight; prints JSON
-#   cooked.ps1 install [-Voice english|gaul|<file.json>] [-Sound default|none|<file>] [-MinSeconds N]
+#   cooked.ps1 install [-Voice <name in voices/>|<file.json>] [-Sound default|none|<file>] [-MinSeconds N]
 #                                                 builds and registers everything under ~/.claude/cooked;
 #                                                 prints the hook commands to put in settings.json
 #   cooked.ps1 test                               fires a real toast, skipping the quiet rules
-#   cooked.ps1 validate -Voice <file.json>        checks a custom voice file
+#   cooked.ps1 validate -Voice <name>|<file.json> checks a voice file
 #   cooked.ps1 uninstall                          removes the app id, click handler, toasts and ~/.claude/cooked
 param(
     [Parameter(Position = 0)][ValidateSet('check', 'install', 'test', 'validate', 'uninstall')][string]$Action = 'check',
@@ -44,6 +44,13 @@ function Get-Csc {
         if (Test-Path $c) { return $c }
     }
     ''
+}
+
+# A bare name ("english") means voices/<name>.json, so a new voice is just a new file there.
+function Resolve-Voice($v) {
+    $shipped = Join-Path $voices "$v.json"
+    if ($v -match '^[\w-]+$' -and (Test-Path $shipped)) { return @{ file = $shipped; name = $v } }
+    @{ file = (Resolve-Path $v).Path; name = 'custom' }
 }
 
 function Test-Voice($path) {
@@ -118,8 +125,8 @@ switch ($Action) {
     }
 
     'validate' {
-        if (-not $Voice) { throw 'validate needs -Voice <file.json>' }
-        $p = Test-Voice $Voice
+        if (-not $Voice) { throw 'validate needs -Voice <name> or <file.json>' }
+        $p = Test-Voice (Resolve-Voice $Voice).file
         if ($p.Count) { Out-Json ([ordered]@{ ok = $false; problems = $p }); exit 1 }
         Out-Json ([ordered]@{ ok = $true })
     }
@@ -131,8 +138,8 @@ switch ($Action) {
         # Voice first, so a bad custom file fails before anything changes.
         $voiceName = $null; $voiceFile = $null
         if ($Voice) {
-            $voiceFile = if ($Voice -in 'english', 'gaul') { Join-Path $voices "$Voice.json" } else { (Resolve-Path $Voice).Path }
-            $voiceName = if ($Voice -in 'english', 'gaul') { $Voice } else { 'custom' }
+            $r = Resolve-Voice $Voice
+            $voiceFile = $r.file; $voiceName = $r.name
             $p = Test-Voice $voiceFile
             if ($p.Count) { Out-Json ([ordered]@{ ok = $false; problems = $p }); exit 1 }
         }

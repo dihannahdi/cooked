@@ -56,8 +56,11 @@ tab; mention it once in the report, nowhere else.
 
 One AskUserQuestion call, four questions. Short labels, trade-offs in the descriptions.
 
-1. **Voice** (header `Voice`). Put first, marked (Recommended), the one matching the language the
-   user writes to you in.
+1. **Voice** (header `Voice`). One option per file in `$SKILL/voices/` except `custom.json` (each
+   file's `_readme` names it), then `My own voice`. Put first, marked (Recommended), the one matching the
+   language the user writes to you in. Four options at most, so leave out shipped voices in
+   languages the user doesn't use. Each description shows that voice's first done and permission
+   titles, like these:
    - `Casual English`: "✅ fix-login is cooked" / "✋ fix-login needs your ok"
    - `Bahasa gaul`: "✅ fix-login udah kelar nih" / "✋ butuh izin nih di fix-login"
    - `My own voice`: Claude writes every line from how you actually type.
@@ -102,7 +105,7 @@ show three sample toasts in the report instead.
 
 ## 4. Install, hook up, test
 
-1. `install -Voice <english | gaul | "$SKILL/voices/custom.json"> -Sound <default | none | "path">
+1. `install -Voice <voice file name without .json, e.g. english | "$SKILL/voices/custom.json"> -Sound <default | none | "path">
    -MinSeconds <30 | 60 | 0>`. The output's `hooks` holds the exact command for `Stop`,
    `Notification` and `UserPromptSubmit`; `settings` is the settings.json to edit.
 2. Merge into that settings.json (create it as `{}` if missing). Read it, then Edit:

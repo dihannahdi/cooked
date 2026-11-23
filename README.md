@@ -105,10 +105,18 @@ your sessions reachable from claude.ai under your own account.
 
 ## Known limits
 
-- Windows only for now.
+- Windows only for now. [macOS](https://github.com/dihannahdi/cooked/issues/2) and [Linux](https://github.com/dihannahdi/cooked/issues/3) ports are open for anyone who wants
+  them.
 - Do Not Disturb is detected through an undocumented Windows state. If it ever misreads, the
   notification still shows; only the sound decision is affected.
 - Tabs are matched by title. Two sessions with the same name: the click goes to the first one.
+
+## Contributing
+
+cooked is open source, and help is welcome. The easiest first contribution is a voice in your own
+language: one JSON file, no code ([#1](https://github.com/dihannahdi/cooked/issues/1)). The bigger open ones are [macOS](https://github.com/dihannahdi/cooked/issues/2) and
+[Linux](https://github.com/dihannahdi/cooked/issues/3) support, and [click-to-tab in more terminals](https://github.com/dihannahdi/cooked/issues/4).
+[CONTRIBUTING.md](CONTRIBUTING.md) has the steps.
 
 ## License
 
